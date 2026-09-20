@@ -1,5 +1,6 @@
 'use client';
 
+import { motion } from 'motion/react';
 import { Car, Compass, MapPin } from 'lucide-react';
 
 // Placeholder tiles: a generic lucide icon centered on a muted colored
@@ -37,21 +38,36 @@ const About = () => {
 
       <ul className="flex flex-wrap justify-center gap-8 lg:justify-between">
         {tiles.map((item) => (
-          <li
+          <motion.li
             key={item.label}
-            className="group flex size-[250px] items-center justify-center overflow-hidden rounded-3xl"
-            style={{
-              backgroundColor: `${item.color}1a`,
-              transform: `rotate(${item.rotation}deg)`,
-            }}
+            className="relative"
+            initial="idle"
+            whileHover="hover"
           >
-            <div className="flex flex-col items-center gap-4 transition-transform duration-300 group-hover:scale-105">
-              <item.Icon className="size-16" style={{ color: item.color }} />
-              <span className="text-muted-foreground px-6 text-center text-sm leading-none text-balance">
-                {item.label}
-              </span>
-            </div>
-          </li>
+            <motion.div
+              className="relative flex size-[250px] items-center justify-center overflow-hidden rounded-3xl"
+              style={{ backgroundColor: `${item.color}1a` }}
+              variants={{
+                idle: { rotate: item.rotation },
+                hover: { rotate: -item.rotation },
+              }}
+              transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+            >
+              <motion.div
+                className="flex flex-col items-center gap-4"
+                variants={{
+                  idle: { scale: 1 },
+                  hover: { scale: 1.08 },
+                }}
+                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+              >
+                <item.Icon className="size-16" style={{ color: item.color }} />
+                <span className="text-muted-foreground px-6 text-center text-sm leading-none text-balance">
+                  {item.label}
+                </span>
+              </motion.div>
+            </motion.div>
+          </motion.li>
         ))}
       </ul>
     </section>
