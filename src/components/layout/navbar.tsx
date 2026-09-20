@@ -31,20 +31,20 @@ const navItems: Array<{
   {
     href: '/',
     icon: Home,
-    tooltip: 'Home',
-    ariaLabel: 'Home',
+    tooltip: 'Accueil',
+    ariaLabel: 'Accueil',
   },
   {
     href: '/projects',
     icon: GalleryVerticalEnd,
-    tooltip: 'Projects',
-    ariaLabel: 'Projects',
+    tooltip: 'Projets',
+    ariaLabel: 'Projets',
   },
   {
     href: '/about',
     icon: UserRound,
-    tooltip: 'Profile',
-    ariaLabel: 'Profile',
+    tooltip: 'À propos',
+    ariaLabel: 'À propos',
   },
 ];
 

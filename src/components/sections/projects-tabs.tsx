@@ -46,19 +46,19 @@ const ProjectsTabs = ({ projects }: ProjectsTabsProps) => {
           <TabsList>
             <TabsTrigger value="all">
               <Layers className="size-4" />
-              All
+              Tout
             </TabsTrigger>
             <TabsTrigger value="featured">
               <Star className="size-4" />
-              Featured
+              À la une
             </TabsTrigger>
             <TabsTrigger value="open-source">
               <Code className="size-4" />
-              Open Source
+              Open source
             </TabsTrigger>
             <TabsTrigger value="personal">
               <Heart className="size-4" />
-              Personal
+              Personnel
             </TabsTrigger>
           </TabsList>
         )}

@@ -2,11 +2,11 @@ const AboutHero = () => {
   return (
     <section className="hero-padding pb-12.5 md:pb-15 lg:pb-18.75">
       <div className="container">
-        <h1 className="text-3xl md:text-4xl">About me</h1>
+        <h1 className="text-3xl md:text-4xl">À propos de moi</h1>
       </div>
 
       <div className="container space-y-10">
-        <h2 className="text-2xl">Story</h2>
+        <h2 className="text-2xl">Parcours</h2>
 
         <div className="text-muted-foreground space-y-8 text-lg">
           <p>

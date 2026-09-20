@@ -45,7 +45,7 @@ const About = () => {
   return (
     <section className="section-padding bigger-container space-y-11 md:space-y-21">
       <div className="space-y-10 md:container">
-        <h2 className="text-2xl leading-none">About</h2>
+        <h2 className="text-2xl leading-none">À propos</h2>
         <div className="text-muted-foreground space-y-8 text-lg md:space-y-11">
           <p>
             Je travaille sur des pipelines RAG, des agents LLM et des

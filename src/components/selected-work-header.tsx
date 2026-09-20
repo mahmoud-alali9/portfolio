@@ -32,11 +32,11 @@ export const SelectedWorkHeader = () => {
       viewport={{ once: true }}
     >
       <motion.h2 className="text-2xl leading-none" variants={itemVariants}>
-        Selected work
+        Projets sélectionnés
       </motion.h2>
       <motion.div variants={itemVariants}>
         <a href="/projects" className="link-underline text-lg leading-none">
-          View all
+          Voir tout
         </a>
       </motion.div>
     </motion.div>

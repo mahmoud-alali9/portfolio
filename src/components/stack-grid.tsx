@@ -37,7 +37,7 @@ function ItemGlyph({ item, className }: { item: StackItem; className?: string })
   return <item.Icon className={className} />;
 }
 
-export function StackGrid({ stack, title = 'My stack', className }: StackGridProps) {
+export function StackGrid({ stack, title = 'Compétences techniques', className }: StackGridProps) {
   if (stack) {
     const stackItems = getStackItems(stack);
 

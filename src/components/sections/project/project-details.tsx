@@ -50,7 +50,7 @@ const ProjectDetails = ({
 
       {/* Highlights */}
       <div className="container space-y-10">
-        <h2 className="text-2xl leading-none">Highlights</h2>
+        <h2 className="text-2xl leading-none">Points clés</h2>
         <ul className="text-muted-foreground ms-7 space-y-2 text-lg">
           {highlights.map((highlight, index) => (
             <li key={index} className="list-disc">

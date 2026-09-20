@@ -40,7 +40,7 @@ const ProjectHero = ({
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                View live
+                Voir la démo
               </a>
             )}
             {liveUrl && sourceUrl && <div className="bg-border h-4 w-px" />}

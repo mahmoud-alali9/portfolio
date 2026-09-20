@@ -1,16 +1,16 @@
-export const SITE_TITLE = 'Mahmoud AL ALI — AI Engineer';
+export const SITE_TITLE = 'Mahmoud AL ALI — Ingénieur IA';
 export const SITE_DESCRIPTION =
   "Étudiant en double M2 Intelligence Artificielle & Management à Montpellier. Je construis des systèmes RAG, des agents LLM et des Knowledge Graphs — du prototype jusqu'à l'évaluation avec des métriques concrètes.";
 
 export const SITE_METADATA = {
   title: {
-    default: 'Mahmoud AL ALI — AI Engineer',
+    default: 'Mahmoud AL ALI — Ingénieur IA',
     template: '%s | Mahmoud AL ALI',
   },
   description: SITE_DESCRIPTION,
   keywords: [
     'Mahmoud AL ALI',
-    'AI Engineer',
+    'Ingénieur IA',
     'RAG',
     'LLM',
     'Agents LLM',
@@ -47,7 +47,7 @@ export const SITE_METADATA = {
         url: '/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'Mahmoud AL ALI — AI Engineer',
+        alt: 'Mahmoud AL ALI — Ingénieur IA',
       },
     ],
   },
