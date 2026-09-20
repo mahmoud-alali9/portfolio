@@ -3,11 +3,12 @@ id: '1'
 name: GraphRAG
 slug: graphrag
 description: Pipeline RAG complet sur 497 juridictions mondiales — graphe de connaissances SKOS/RDF interrogé via SPARQL, génération de requêtes automatique, réponses via Llama 3.3 70B.
-href: https://github.com/mahmoud-alali9/GraphRAG
+href: https://github.com/mahmoud-alali9/TER-GraphRAG-Knowledge-Graph-RAG-SKOS-RDF-
+image: /images/projects/graphrag/cover.jpg
 category: featured
-sourceUrl: https://github.com/mahmoud-alali9/GraphRAG
-longDescription: Pipeline RAG complet sur 497 juridictions mondiales. Graphe de connaissances SKOS/RDF dans Apache Jena Fuseki, interrogé via SPARQL. Planification d'intention, génération de requêtes SPARQL automatique, réponses via Llama 3.3 70B (Groq). Évaluation des réponses LLM avec RAGAS.
-additionalDescription: L'évaluation s'appuie sur RAGAS pour mesurer la fidélité (faithfulness) et le rappel de contexte (context recall) des réponses générées, garantissant que le pipeline reste factuellement ancré dans les 497 juridictions modélisées.
+sourceUrl: https://github.com/mahmoud-alali9/TER-GraphRAG-Knowledge-Graph-RAG-SKOS-RDF-
+longDescription: Pipeline RAG complet sur 497 juridictions mondiales, interrogeant un graphe de connaissances SKOS/RDF servi par Apache Jena Fuseki via SPARQL. Le pipeline enchaîne 4 étapes — un Planner (Groq) qui classifie l'intention et génère la requête SPARQL, une résolution d'entités (NERD Linking) pour identifier la juridiction visée, un exécuteur SPARQL avec auto-correction en cas d'échec, puis un Generator (Llama 3.3 70B via Groq) qui produit la réponse finale. Interface bilingue français/anglais, exposée via une API REST FastAPI documentée (Swagger) et déployée avec Docker (Fuseki + chargeur TTL).
+additionalDescription: L'évaluation combine RAGAS (faithfulness, context recall) et un retour expert humain noté sur 5, journalisés dans une base SQLite dédiée — garantissant que le pipeline reste factuellement ancré dans les 497 juridictions modélisées plutôt que de mesurer uniquement la fluidité des réponses.
 stack:
   - python
   - llamaindex
@@ -16,15 +17,17 @@ stack:
   - apache-jena-fuseki
   - faiss
   - ragas
+  - fastapi
+  - docker
 highlights:
   - 497 juridictions mondiales modélisées
-  - Faithfulness et context recall évalués via RAGAS
-  - Génération automatique de requêtes SPARQL à partir de l'intention utilisateur
-  - Réponses générées via Llama 3.3 70B (Groq)
+  - 'Pipeline en 4 étapes : planification, résolution d''entités, exécution SPARQL auto-corrective, génération'
+  - Faithfulness et context recall évalués via RAGAS, complétés par un retour expert
+  - API REST FastAPI (Swagger) déployée avec Docker (Fuseki + chargeur TTL)
 placeholderIcon: Network
-placeholderColor: '#3b4a5a'
+placeholderColor: '#46576f'
 ---
 
 ## Aperçu
 
-Pipeline RAG complet sur 497 juridictions mondiales, combinant un graphe de connaissances SKOS/RDF interrogé via SPARQL et une génération de réponses par Llama 3.3 70B.
+Pipeline RAG complet sur 497 juridictions mondiales, combinant un graphe de connaissances SKOS/RDF interrogé via SPARQL et une génération de réponses par Llama 3.3 70B, avec évaluation hybride RAGAS + retour expert.

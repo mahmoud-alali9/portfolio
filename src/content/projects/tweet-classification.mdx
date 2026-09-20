@@ -3,11 +3,12 @@ id: '2'
 name: Classification NLP — Tweets scientifiques
 slug: tweet-classification
 description: Pipeline NLP de détection de tweets scientifiques — TF-IDF, comparaison de 5 classifieurs, SMOTE et optimisation bayésienne avec Optuna. AUC-ROC final de 0.92.
-href: https://github.com/mahmoud-alali9/tweet-classification
+href: https://github.com/mahmoud-alali9/Projet-Machine-Learning-Classification-NLP-de-tweets-scientifiques
+image: /images/projects/tweet-classification/cover.jpg
 category: featured
-sourceUrl: https://github.com/mahmoud-alali9/tweet-classification
-longDescription: Pipeline NLP de détection de tweets scientifiques. TF-IDF + comparaison de 5 classifieurs (SVM, Random Forest, Régression Logistique...) sur 1 140 tweets annotés. SMOTE pour le déséquilibre de classes, optimisation bayésienne des hyperparamètres avec Optuna.
-additionalDescription: Le déséquilibre entre classes a été traité avec SMOTE avant une recherche d'hyperparamètres bayésienne (Optuna) pour maximiser l'AUC-ROC sur les 5 classifieurs comparés.
+sourceUrl: https://github.com/mahmoud-alali9/Projet-Machine-Learning-Classification-NLP-de-tweets-scientifiques
+longDescription: Détection automatique de tweets scientifiques à partir du dataset SciTweets (1 140 tweets annotés), traitée en 3 tâches de granularité croissante — SCI vs NON-SCI, {CLAIM, REF} vs CONTEXT, puis CLAIM vs REF vs CONTEXT. Deux stratégies de prétraitement comparées (NLTK/WordNet vs spaCy avec filtrage POS), vectorisation TF-IDF (n-grammes 1–3), et 5 classifieurs testés (Naive Bayes, Régression Logistique, SVM, K-NN, Random Forest) avec validation croisée stratifiée à 5 folds.
+additionalDescription: Le déséquilibre des classes est traité avec SMOTE et l'augmentation de données (substitution de synonymes WordNet), puis les hyperparamètres optimisés par recherche bayésienne (Optuna). Meilleur modèle sur la tâche principale — Régression Logistique — AUC-ROC 0.920, F1 (SCI) 0.782, accuracy 0.851.
 stack:
   - python
   - scikit-learn
@@ -15,14 +16,14 @@ stack:
   - smote
   - optuna
 highlights:
-  - 'AUC-ROC final : 0.92'
-  - 1 140 tweets annotés
-  - 5 classifieurs comparés (SVM, Random Forest, Régression Logistique...)
-  - Optimisation bayésienne des hyperparamètres avec Optuna
+  - 'AUC-ROC : 0.920 (F1 SCI 0.782, accuracy 0.851) — meilleur modèle : Régression Logistique'
+  - 1 140 tweets annotés (dataset SciTweets), 3 tâches de classification imbriquées
+  - 5 classifieurs comparés avec validation croisée stratifiée à 5 folds
+  - SMOTE, augmentation par synonymes WordNet et optimisation bayésienne (Optuna) pour le déséquilibre de classes
 placeholderIcon: MessageSquareText
-placeholderColor: '#4a5240'
+placeholderColor: '#585e4d'
 ---
 
 ## Aperçu
 
-Pipeline NLP de détection de tweets scientifiques, comparant 5 classifieurs sur 1 140 tweets annotés pour atteindre une AUC-ROC de 0.92.
+Pipeline NLP de détection de tweets scientifiques, comparant 5 classifieurs sur 1 140 tweets annotés pour atteindre une AUC-ROC de 0.920 sur la tâche principale.

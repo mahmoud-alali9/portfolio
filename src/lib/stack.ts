@@ -214,6 +214,7 @@ const EXTRA_ITEMS: (StackItem & { key?: string })[] = [
   { name: 'A*', key: 'a-star', Icon: BrainCircuit, color: '#7c6f9f' },
   { name: 'Task Market', Icon: BrainCircuit, color: '#7c6f9f' },
   { name: 'Blackboard', Icon: BrainCircuit, color: '#7c6f9f' },
+  { name: 'Resource Locks', Icon: BrainCircuit, color: '#7c6f9f' },
 ];
 for (const { key, ...item } of EXTRA_ITEMS) {
   flatConfig[key ?? slugify(item.name)] = item;

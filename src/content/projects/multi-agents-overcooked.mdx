@@ -2,12 +2,13 @@
 id: '3'
 name: Multi-Agents Overcooked
 slug: multi-agents-overcooked
-description: Système multi-agents coopératif dans une cuisine simulée, sans chef d'orchestre central — planification STRIPS, allocation par enchères, +40% de performance vs mono-agent.
-href: https://github.com/mahmoud-alali9/multi-agents-overcooked
+description: Deux agents autonomes coopèrent dans une cuisine simulée, sans chef d'orchestre central — planification STRIPS, allocation par enchères, +40% de performance vs mono-agent.
+href: https://github.com/mahmoud-alali9
+image: /images/projects/multi-agents-overcooked/cover.jpg
 category: featured
-sourceUrl: https://github.com/mahmoud-alali9/multi-agents-overcooked
-longDescription: Système multi-agents coopératif dans une cuisine simulée, sans chef d'orchestre central. Planification STRIPS, allocation dynamique par enchères (Task Market), communication asynchrone via Blackboard. Comparaison rigoureuse mono-agent (A*) vs multi-agents avec métriques intégrées.
-additionalDescription: La comparaison rigoureuse face à une baseline mono-agent (A*) a permis de quantifier le gain de coordination distribuée, avec un équilibrage de charge et un débit mesurés en conditions comparables.
+sourceUrl: https://github.com/mahmoud-alali9
+longDescription: Simulation d'une cuisine virtuelle où 2 agents autonomes coopèrent sans chef d'orchestre central. Chaque agent planifie ses actions avec STRIPS, les tâches sont allouées dynamiquement par un système d'enchères (Task Market), la synchronisation des ressources partagées passe par des verrous (Resource Locks), et la communication asynchrone suit le pattern Blackboard.
+additionalDescription: Une comparaison rigoureuse face à une baseline mono-agent (A*) quantifie le gain de la coordination distribuée sur des métriques intégrées au simulateur — performance, équilibrage de charge et débit.
 stack:
   - python
   - pygame
@@ -15,15 +16,16 @@ stack:
   - a-star
   - task-market
   - blackboard
+  - resource-locks
 highlights:
-  - +40% de performance vs mono-agent
-  - Équilibrage de charge 85–95%
+  - +40% de performance vs une baseline mono-agent (A*)
+  - Équilibrage de charge 85–95% entre les 2 agents
   - Throughput ~2.0 commandes/min
-  - Communication asynchrone via Blackboard, allocation par enchères (Task Market)
+  - Allocation par enchères (Task Market), verrous de ressources et communication asynchrone (Blackboard)
 placeholderIcon: ChefHat
-placeholderColor: '#5a4536'
+placeholderColor: '#624e3e'
 ---
 
 ## Aperçu
 
-Système multi-agents coopératif dans une cuisine simulée, sans chef d'orchestre central, offrant +40% de performance par rapport à une baseline mono-agent.
+Deux agents autonomes coopèrent dans une cuisine simulée, sans chef d'orchestre central, pour +40% de performance par rapport à une baseline mono-agent.
