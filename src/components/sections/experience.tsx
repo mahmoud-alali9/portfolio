@@ -9,7 +9,8 @@ const formations = [
     subtitle: 'Intelligence Artificielle et Science des Données',
     period: '2025 – en cours',
     description:
-      'Systèmes RAG, agents LLM, Knowledge Graphs et évaluation de modèles.',
+      "Machine learning, NLP, représentation sémantique des données et raisonnement pour l'aide à la décision. Double diplôme avec l'IAE Montpellier.",
+    link: 'https://informatique-fds.edu.umontpellier.fr/etudiants/master-informatique-parcours/parcours-iasd-intelligence-artificielle-et-science-des-donnees-ouverture-septembre-2021/',
   },
   {
     school: 'IAE Montpellier',
@@ -17,7 +18,8 @@ const formations = [
     subtitle: null,
     period: '2025 – en cours',
     description:
-      'Double diplôme orienté pilotage de projets technologiques et stratégie data.',
+      "Double diplôme à l'interface sciences/entreprise — pilotage de projets technologiques et transformation data.",
+    link: 'https://iae.umontpellier.fr/formation/master-2-management-technologies-et-sciences/',
   },
   {
     school: 'Université de Montpellier',
@@ -26,6 +28,7 @@ const formations = [
     period: '2022 – 2025',
     description:
       "Fondamentaux de l'algorithmique, des bases de données et du développement logiciel.",
+    link: 'https://informatique-fds.edu.umontpellier.fr/etudiants/offre-de-formation-licence/',
   },
 ];
 
@@ -49,7 +52,14 @@ const Experience = () => {
               }}
               transition={{ type: 'spring', stiffness: 300, damping: 25 }}
             >
-              {formation.program}
+              <a
+                href={formation.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="link-underline"
+              >
+                {formation.program}
+              </a>
             </motion.div>
             {formation.subtitle && (
               <motion.p
