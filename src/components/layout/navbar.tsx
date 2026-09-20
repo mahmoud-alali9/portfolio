@@ -1,17 +1,19 @@
 'use client';
 
 import {
+  FileText,
   GalleryVerticalEnd,
   Home,
+  Linkedin,
   type LucideIcon,
-  PencilLine,
   UserRound,
 } from 'lucide-react';
 import { motion } from 'motion/react';
 
-import { GitHubIcon, XIcon } from '@/components/icons';
+import { GitHubIcon } from '@/components/icons';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { Button } from '@/components/ui/button';
+import { CV_URL, GITHUB_URL, LINKEDIN_URL } from '@/lib/constants';
 
 const MotionA = motion.create('a');
 
@@ -43,12 +45,6 @@ const navItems: Array<{
     icon: UserRound,
     tooltip: 'Profile',
     ariaLabel: 'Profile',
-  },
-  {
-    href: '/articles',
-    icon: PencilLine,
-    tooltip: 'Articles',
-    ariaLabel: 'Articles',
   },
 ];
 
@@ -94,14 +90,14 @@ const Navbar = () => {
             variant="muted"
             size="icon-lg"
             className="xs:flex hidden rounded-full"
-            tooltip="Follow us on X"
+            tooltip="LinkedIn"
             asChild
           >
             <MotionA
-              href="https://x.com"
+              href={LINKEDIN_URL}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="X (Twitter)"
+              aria-label="LinkedIn"
               initial="idle"
               whileTap="tap"
             >
@@ -109,22 +105,44 @@ const Navbar = () => {
                 variants={iconVariants}
                 transition={{ type: 'spring', stiffness: 400, damping: 17 }}
               >
-                <XIcon className="size-[18px]" />
+                <Linkedin className="size-[18px]" />
+              </motion.div>
+            </MotionA>
+          </Button>
+          <Button
+            variant="muted"
+            size="icon-lg"
+            className="xs:flex hidden rounded-full"
+            tooltip="GitHub"
+            asChild
+          >
+            <MotionA
+              href={GITHUB_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+              initial="idle"
+              whileTap="tap"
+            >
+              <motion.div
+                variants={iconVariants}
+                transition={{ type: 'spring', stiffness: 400, damping: 17 }}
+              >
+                <GitHubIcon className="size-[18px]" />
               </motion.div>
             </MotionA>
           </Button>
           <Button
             variant="muted"
             size="lg"
-            className="rounded-full ps-2! pe-4!"
-            tooltip="Star us on GitHub"
+            className="rounded-full ps-3! pe-4!"
+            tooltip="Télécharger mon CV"
             asChild
           >
             <MotionA
-              href="https://github.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="GitHub Stars"
+              href={CV_URL}
+              download
+              aria-label="Télécharger mon CV"
               initial="idle"
               whileTap="tap"
             >
@@ -132,9 +150,9 @@ const Navbar = () => {
                 variants={iconVariants}
                 transition={{ type: 'spring', stiffness: 400, damping: 17 }}
               >
-                <GitHubIcon className="size-6" />
+                <FileText className="size-5" />
               </motion.div>
-              <span className="text-sm leading-none">11.2k</span>
+              <span className="text-sm leading-none">CV</span>
             </MotionA>
           </Button>
         </div>

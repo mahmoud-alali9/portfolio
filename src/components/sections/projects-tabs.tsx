@@ -22,8 +22,14 @@ const tabIcons: Record<string, LucideIcon> = {
 const ProjectsTabs = ({ projects }: ProjectsTabsProps) => {
   const [activeTab, setActiveTab] = useState('all');
 
+  // Only show category tabs when the projects actually span more than one
+  // category — with a single category in play, a tab bar just adds empty
+  // tabs and noise, so we skip it and show the full grid instead.
+  const hasMultipleCategories =
+    new Set(projects.map((project) => project.category)).size > 1;
+
   const filteredProjects =
-    activeTab === 'all'
+    !hasMultipleCategories || activeTab === 'all'
       ? projects
       : projects.filter((project) => project.category === activeTab);
 
@@ -36,24 +42,26 @@ const ProjectsTabs = ({ projects }: ProjectsTabsProps) => {
       className="bigger-container"
     >
       <div className="mt-15 mb-14 md:container md:mt-18 md:mb-17">
-        <TabsList>
-          <TabsTrigger value="all">
-            <Layers className="size-4" />
-            All
-          </TabsTrigger>
-          <TabsTrigger value="featured">
-            <Star className="size-4" />
-            Featured
-          </TabsTrigger>
-          <TabsTrigger value="open-source">
-            <Code className="size-4" />
-            Open Source
-          </TabsTrigger>
-          <TabsTrigger value="personal">
-            <Heart className="size-4" />
-            Personal
-          </TabsTrigger>
-        </TabsList>
+        {hasMultipleCategories && (
+          <TabsList>
+            <TabsTrigger value="all">
+              <Layers className="size-4" />
+              All
+            </TabsTrigger>
+            <TabsTrigger value="featured">
+              <Star className="size-4" />
+              Featured
+            </TabsTrigger>
+            <TabsTrigger value="open-source">
+              <Code className="size-4" />
+              Open Source
+            </TabsTrigger>
+            <TabsTrigger value="personal">
+              <Heart className="size-4" />
+              Personal
+            </TabsTrigger>
+          </TabsList>
+        )}
       </div>
 
       <LayoutGroup>

@@ -1,26 +1,30 @@
-export const SITE_TITLE = 'Echo - Modern Astro Template';
+export const SITE_TITLE = 'Mahmoud AL ALI — AI Engineer';
 export const SITE_DESCRIPTION =
-  'A modern, fully featured Astro template built with Shadcn/UI, TailwindCSS and TypeScript, perfect for your next web application.';
+  "Étudiant en double M2 Intelligence Artificielle & Management à Montpellier. Je construis des systèmes RAG, des agents LLM et des Knowledge Graphs — du prototype jusqu'à l'évaluation avec des métriques concrètes.";
 
 export const SITE_METADATA = {
   title: {
-    default: 'Echo - Modern Astro Template',
-    template: '%s | Echo',
+    default: 'Mahmoud AL ALI — AI Engineer',
+    template: '%s | Mahmoud AL ALI',
   },
   description: SITE_DESCRIPTION,
   keywords: [
-    'Astro',
-    'React',
-    'JavaScript',
-    'TypeScript',
-    'TailwindCSS',
-    'Template',
-    'Shadcn/UI',
-    'Web Development',
+    'Mahmoud AL ALI',
+    'AI Engineer',
+    'RAG',
+    'LLM',
+    'Agents LLM',
+    'Knowledge Graphs',
+    'Intelligence Artificielle',
+    'Data Science',
+    'Machine Learning',
+    'NLP',
+    'Montpellier',
+    'Alternance',
   ],
-  authors: [{ name: 'Echo - Shadcnblocks.com' }],
-  creator: 'Echo - Shadcnblocks.com',
-  publisher: 'Echo',
+  authors: [{ name: 'Mahmoud AL ALI' }],
+  creator: 'Mahmoud AL ALI',
+  publisher: 'Mahmoud AL ALI',
   robots: {
     index: true,
     follow: true,
@@ -36,19 +40,19 @@ export const SITE_METADATA = {
   },
   openGraph: {
     type: 'website',
-    locale: 'en_US',
-    siteName: 'Echo',
+    locale: 'fr_FR',
+    siteName: 'Mahmoud AL ALI',
     images: [
       {
         url: '/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'Echo - Modern Astro Template',
+        alt: 'Mahmoud AL ALI — AI Engineer',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    creator: '@shadcnblocks',
+    creator: '',
   },
 };

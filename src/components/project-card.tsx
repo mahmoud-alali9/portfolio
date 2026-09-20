@@ -4,6 +4,7 @@ import type { LucideIcon } from 'lucide-react';
 import { motion } from 'motion/react';
 
 import { Card } from '@/components/ui/card';
+import { ImagePlaceholder } from '@/components/ui/image-placeholder';
 import type { ProjectFrontmatter } from '@/lib/types';
 import { cn } from '@/lib/utils';
 
@@ -27,14 +28,26 @@ export const ProjectCard = ({ project, icon: Icon }: ProjectCardProps) => {
       >
         <Card className="xs:h-80 group flex h-62 items-center justify-center overflow-hidden p-0">
           <div className={cn('relative size-full', project.wrapperClassName)}>
-            <img
-              src={project.image}
-              alt={project.name}
-              className={cn(
-                'size-full object-cover transition-all duration-300 group-hover:scale-105',
-                project.imageClassName,
-              )}
-            />
+            {project.image ? (
+              <img
+                src={project.image}
+                alt={project.name}
+                className={cn(
+                  'size-full object-cover transition-all duration-300 group-hover:scale-105',
+                  project.imageClassName,
+                )}
+              />
+            ) : (
+              <ImagePlaceholder
+                icon={project.placeholderIcon ?? 'Sparkles'}
+                color={project.placeholderColor ?? '#3f3f46'}
+                label={project.name}
+                className={cn(
+                  'transition-all duration-300 group-hover:scale-105',
+                  project.imageClassName,
+                )}
+              />
+            )}
           </div>
         </Card>
 

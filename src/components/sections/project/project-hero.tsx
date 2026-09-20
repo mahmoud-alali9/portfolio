@@ -1,11 +1,14 @@
 import { Card } from '@/components/ui/card';
+import { ImagePlaceholder } from '@/components/ui/image-placeholder';
 import { cn } from '@/lib/utils';
 
 interface ProjectHeroProps {
   name: string;
-  liveUrl: string;
-  sourceUrl: string;
-  coverImage: string;
+  liveUrl?: string;
+  sourceUrl?: string;
+  coverImage?: string;
+  placeholderIcon?: string;
+  placeholderColor?: string;
   longDescription: string;
   wrapperClassName?: string;
   imageClassName?: string;
@@ -16,6 +19,8 @@ const ProjectHero = ({
   liveUrl,
   sourceUrl,
   coverImage,
+  placeholderIcon,
+  placeholderColor,
   longDescription,
   wrapperClassName,
   imageClassName,
@@ -25,34 +30,49 @@ const ProjectHero = ({
       <div className="container space-y-8 md:space-y-10">
         <h1 className="text-3xl md:text-4xl">{name}</h1>
 
-        <div className="flex items-center gap-4">
-          <a
-            href={liveUrl}
-            className="link-underline text-lg leading-none"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            View live
-          </a>
-          <div className="bg-border h-4 w-px" />
-          <a
-            href={sourceUrl}
-            className="link-underline text-lg leading-none"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Source code
-          </a>
-        </div>
+        {(liveUrl || sourceUrl) && (
+          <div className="flex items-center gap-4">
+            {liveUrl && (
+              <a
+                href={liveUrl}
+                className="link-underline text-lg leading-none"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                View live
+              </a>
+            )}
+            {liveUrl && sourceUrl && <div className="bg-border h-4 w-px" />}
+            {sourceUrl && (
+              <a
+                href={sourceUrl}
+                className="link-underline text-lg leading-none"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Source code
+              </a>
+            )}
+          </div>
+        )}
       </div>
       <div className="bigger-container my-15 md:my-18">
         <Card className="flex aspect-video items-center justify-center overflow-hidden p-0">
           <div className={cn('relative size-full', wrapperClassName)}>
-            <img
-              src={coverImage}
-              alt={name}
-              className={cn('size-full object-cover', imageClassName)}
-            />
+            {coverImage ? (
+              <img
+                src={coverImage}
+                alt={name}
+                className={cn('size-full object-cover', imageClassName)}
+              />
+            ) : (
+              <ImagePlaceholder
+                icon={placeholderIcon ?? 'Sparkles'}
+                color={placeholderColor ?? '#3f3f46'}
+                label={name}
+                className={imageClassName}
+              />
+            )}
           </div>
         </Card>
       </div>

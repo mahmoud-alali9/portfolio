@@ -1,44 +1,50 @@
 'use client';
 
 import { motion } from 'motion/react';
+import { BrainCircuit, MapPin, Network } from 'lucide-react';
 import { useCallback, useRef, useState } from 'react';
 
 import { HireMePopup } from '@/components/hire-me-popup';
 import { cn } from '@/lib/utils';
 
-const images = [
+// Placeholder tiles: a generic lucide icon centered on a muted colored
+// background, standing in for real photos until some are provided.
+const tiles = [
   {
-    image: {
-      src: '/images/about/coding.webp',
-      alt: 'Person coding on laptop',
+    tile: {
+      label: 'RAG & LLM',
+      Icon: BrainCircuit,
+      color: '#7c6f9f',
       rotation: 4.6,
     },
     emoji: {
-      text: '👨‍💻',
+      text: '🤖',
       classname: 'top-0 -translate-y-1/2 -right-4',
       hoverX: -226, // slides from right side to left side (250px image + offsets - emoji width)
     },
   },
   {
-    image: {
-      src: '/images/about/bridge.webp',
-      alt: 'Golden Gate Bridge',
+    tile: {
+      label: 'Knowledge Graphs',
+      Icon: Network,
+      color: '#4f7a6b',
       rotation: -4,
     },
     emoji: {
-      text: '🏔️',
+      text: '🕸️',
       classname: 'bottom-0 translate-y-1/2 -right-4',
       hoverX: -206, // slides from right side to left side
     },
   },
   {
-    image: {
-      src: '/images/about/dog.webp',
-      alt: 'French Bulldog',
+    tile: {
+      label: 'Montpellier',
+      Icon: MapPin,
+      color: '#64748b',
       rotation: 3.6,
     },
     emoji: {
-      text: '🐶',
+      text: '📍',
       classname: 'top-0 -translate-y-1/2 left-8',
       hoverX: 126, // slides from left side to right side (250px - 32px left offset - 32px right offset)
     },
@@ -96,26 +102,29 @@ const About = () => {
         <h2 className="text-2xl leading-none">About</h2>
         <div className="text-muted-foreground space-y-8 text-lg md:space-y-11">
           <p>
-            I started coding out of curiosity — building small browser games and
-            landing pages — and over time grew into developing complete products
-            that balance design and engineering.
+            Je travaille sur des pipelines RAG, des agents LLM et des
+            Knowledge Graphs — de la modélisation des données jusqu&apos;à
+            l&apos;évaluation avec des métriques concrètes (RAGAS,
+            faithfulness, context recall).
           </p>
           <p>
-            My stack includes TypeScript, React, Next.js, Node, and PostgreSQL,
-            but I love exploring new technologies that make the web better.
+            Mon socle technique : Python, LlamaIndex, LangChain, FAISS,
+            SPARQL et Apache Jena Fuseki côté IA et web sémantique ;
+            scikit-learn, pandas et PyTorch côté ML/NLP.
           </p>
           <p>
-            Outside of coding, I enjoy writing, contributing to open source, and
-            teaching others what I&apos;ve learned.
+            En dehors de l&apos;IA, je m&apos;intéresse au pilotage de projets
+            technologiques (double diplôme en management), et je suis
+            disponible pour une alternance ou un stage de fin d&apos;études.
           </p>
         </div>
       </div>
 
       <div className="relative">
         <ul className="flex flex-wrap justify-center gap-8 lg:justify-between">
-          {images.map((item) => (
+          {tiles.map((item) => (
             <motion.li
-              key={item.image.src}
+              key={item.tile.label}
               className="relative"
               initial="idle"
               whileHover="hover"
@@ -123,18 +132,21 @@ const About = () => {
               onHoverEnd={handleHoverEnd}
             >
               <motion.div
-                className="relative size-[250px] overflow-hidden rounded-3xl"
+                className="relative flex size-[250px] items-center justify-center overflow-hidden rounded-3xl"
+                style={{ backgroundColor: `${item.tile.color}1a` }}
                 variants={{
-                  idle: { rotate: item.image.rotation },
-                  hover: { rotate: -item.image.rotation },
+                  idle: { rotate: item.tile.rotation },
+                  hover: { rotate: -item.tile.rotation },
                 }}
                 transition={{ type: 'spring', stiffness: 300, damping: 20 }}
               >
-                <img
-                  src={item.image.src}
-                  alt={item.image.alt}
-                  className="size-full object-cover"
+                <item.tile.Icon
+                  className="size-16"
+                  style={{ color: item.tile.color }}
                 />
+                <span className="text-muted-foreground absolute bottom-6 text-sm leading-none">
+                  {item.tile.label}
+                </span>
               </motion.div>
               <motion.div
                 className={cn(

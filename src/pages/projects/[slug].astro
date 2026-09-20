@@ -33,8 +33,8 @@ if (!project) {
 const { frontmatter } = project;
 const allProjects = await getAllProjects();
 
-// Get related projects specified in the MDX frontmatter
-const moreProjects = frontmatter.moreProjects
+// Get related projects specified in the MDX frontmatter (optional field)
+const moreProjects = (frontmatter.moreProjects ?? [])
   .map((slug) => allProjects.find((p) => p.slug === slug))
   .filter(Boolean) as ProjectFrontmatter[];
 ---
@@ -46,6 +46,8 @@ const moreProjects = frontmatter.moreProjects
       liveUrl={frontmatter.liveUrl}
       sourceUrl={frontmatter.sourceUrl}
       coverImage={frontmatter.image}
+      placeholderIcon={frontmatter.placeholderIcon}
+      placeholderColor={frontmatter.placeholderColor}
       longDescription={frontmatter.longDescription}
       wrapperClassName={frontmatter.wrapperClassName}
       imageClassName={frontmatter.imageClassName}

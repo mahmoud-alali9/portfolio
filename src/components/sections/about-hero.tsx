@@ -1,5 +1,3 @@
-import { Card } from '@/components/ui/card';
-
 const AboutHero = () => {
   return (
     <section className="hero-padding pb-12.5 md:pb-15 lg:pb-18.75">
@@ -7,37 +5,30 @@ const AboutHero = () => {
         <h1 className="text-3xl md:text-4xl">About me</h1>
       </div>
 
-      <div className="bigger-container hero-padding">
-        <Card className="relative aspect-video overflow-hidden p-0">
-          <img
-            src="/images/home/avatar.webp"
-            alt="Person working on laptop"
-            className="size-full object-cover"
-          />
-        </Card>
-      </div>
-
       <div className="container space-y-10">
         <h2 className="text-2xl">Story</h2>
 
         <div className="text-muted-foreground space-y-8 text-lg">
           <p>
-            I&apos;ve been writing code for several years now, working across
-            both frontend and backend. My focus is on creating products that
-            balance clean design, solid architecture, and great user experience.
+            Je suis actuellement en double M2 à Montpellier : Intelligence
+            Artificielle et Science des Données à l&apos;Université de
+            Montpellier, et Management des Technologies et des Sciences à
+            l&apos;IAE Montpellier.
           </p>
 
           <p>
-            I care about clarity, simplicity, and craftsmanship — not just in
-            code, but in how things feel to use. I like tools that are
-            lightweight and flexible, and I believe that the best products are
-            the ones that stay out of the user&apos;s way.
+            Je construis des systèmes RAG, des agents LLM et des Knowledge
+            Graphs — du prototype jusqu&apos;à l&apos;évaluation avec des
+            métriques concrètes (RAGAS, faithfulness, context recall).
+            J&apos;aime autant l&apos;ingénierie que la rigueur de la mesure :
+            un système qui marche « à l&apos;oeil » ne m&apos;intéresse pas,
+            je veux savoir ce qu&apos;il vaut vraiment.
           </p>
 
           <p>
-            Hey — I&apos;m John, a full-stack developer who loves turning ideas
-            into real, working products. I enjoy the craft of building — the
-            small details that make software feel thoughtful, fast, and alive.
+            Je suis disponible pour une alternance de 12 mois dès maintenant,
+            ou un stage de fin d&apos;études de 6 mois en janvier, février ou
+            mars 2027.
           </p>
         </div>
       </div>

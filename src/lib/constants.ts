@@ -1,26 +1,27 @@
 export const NAV_ITEMS = [
   { href: '/', label: 'Home' },
+  { href: '/projects', label: 'Projects' },
   { href: '/about', label: 'About' },
-  { href: '/work', label: 'Work' },
-  { href: '/contact', label: 'Contact' },
+  { href: '/articles', label: 'Articles' },
 ];
 
 export const SOCIAL_LINKS = [
   {
-    name: 'Twitter',
-    href: 'https://twitter.com',
-    icon: 'X',
+    name: 'GitHub',
+    href: 'https://github.com/mahmoud-alali9',
+    icon: 'github',
   },
   {
     name: 'LinkedIn',
-    href: 'https://linkedin.com',
-    icon: 'in',
-  },
-  {
-    name: 'Instagram',
-    href: 'https://instagram.com',
-    icon: 'IG',
+    href: 'https://linkedin.com/in/al-mahmoud-al-ali',
+    icon: 'linkedin',
   },
 ];
 
-export const CONTACT_EMAIL = 'hi@john.me';
+export const GITHUB_URL = 'https://github.com/mahmoud-alali9';
+export const LINKEDIN_URL = 'https://linkedin.com/in/al-mahmoud-al-ali';
+
+export const CONTACT_EMAIL = 'alikhlaifmahmoud@gmail.com';
+export const PHONE = '06 67 65 95 15';
+export const LOCATION = 'Montpellier, France';
+export const CV_URL = '/CV-Mahmoud-AL-ALI.pdf';

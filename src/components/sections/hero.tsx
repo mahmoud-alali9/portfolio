@@ -25,6 +25,11 @@ const itemVariants = {
   },
 };
 
+const STATUS_ITEMS = [
+  'Alternance 12 mois — disponible maintenant',
+  'Stage 6 mois — janv / fév / mars 2027',
+];
+
 const Hero = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
@@ -32,7 +37,6 @@ const Hero = () => {
     offset: ['start start', 'end start'],
   });
 
-  const avatarY = useTransform(scrollYProgress, [0, 1], [0, -50]);
   const textY = useTransform(scrollYProgress, [0, 1], [0, -30]);
   const emailY = useTransform(scrollYProgress, [0, 1], [0, -15]);
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
@@ -47,30 +51,37 @@ const Hero = () => {
       viewport={{ once: true }}
       style={{ opacity }}
     >
-      <motion.div
-        className="relative size-16 overflow-hidden rounded-full"
-        variants={itemVariants}
-        style={{ y: avatarY }}
-        whileHover={{ scale: 1.1, rotate: 5 }}
-        transition={{ type: 'spring', stiffness: 400, damping: 17 }}
-      >
-        <img
-          src="/images/home/avatar.webp"
-          alt="John's avatar"
-          className="size-full rounded-full object-cover"
-        />
-      </motion.div>
-
       {/* Text content */}
       <motion.div
         className="flex flex-col gap-5"
         variants={itemVariants}
         style={{ y: textY }}
       >
-        <h1 className="text-3xl md:text-4xl">Hi, I&apos;m John</h1>
-        <p className="text-muted-foreground text-lg leading-none">
-          Full-stack developer who loves building things from idea to launch.
-        </p>
+        <h1 className="text-3xl md:text-4xl">Salut, je suis Mahmoud</h1>
+        <div className="text-muted-foreground max-w-2xl space-y-4 text-lg leading-normal">
+          <p>
+            Étudiant en double M2 Intelligence Artificielle &amp; Management à
+            Montpellier. Je construis des systèmes RAG, des agents LLM et des
+            Knowledge Graphs — du prototype jusqu&apos;à l&apos;évaluation
+            avec des métriques concrètes.
+          </p>
+          <p>
+            Disponible en alternance 12 mois (maintenant) ou stage fin
+            d&apos;études 6 mois (janvier, février ou mars 2027).
+          </p>
+        </div>
+
+        <ul className="flex flex-wrap gap-3 pt-2">
+          {STATUS_ITEMS.map((status) => (
+            <li
+              key={status}
+              className="bg-muted text-foreground flex items-center gap-2 rounded-full px-4 py-2 text-sm leading-none"
+            >
+              <span aria-hidden="true">✅</span>
+              {status}
+            </li>
+          ))}
+        </ul>
       </motion.div>
 
       {/* Email link */}
