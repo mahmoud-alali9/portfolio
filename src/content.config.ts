@@ -19,18 +19,23 @@ const projects = defineCollection({
     slug: z.string(),
     description: z.string(),
     href: z.string(),
-    image: z.string(),
+    image: z.string().optional(),
+    // Placeholder shown in place of a real cover image until one is provided:
+    // a lucide-react icon name (see src/components/icons/index.tsx PLACEHOLDER_ICONS)
+    // centered on a solid, categorized background color.
+    placeholderIcon: z.string().optional(),
+    placeholderColor: z.string().optional(),
     wrapperClassName: z.string().optional(),
     imageClassName: z.string().optional(),
     category: z.enum(['featured', 'open-source', 'personal']),
-    liveUrl: z.string(),
-    sourceUrl: z.string(),
+    liveUrl: z.string().optional(),
+    sourceUrl: z.string().optional(),
     longDescription: z.string(),
     additionalDescription: z.string(),
     stack: z.array(z.string()),
-    images: z.array(projectImageSchema),
+    images: z.array(projectImageSchema).optional(),
     highlights: z.array(z.string()),
-    moreProjects: z.array(z.string()),
+    moreProjects: z.array(z.string()).optional(),
   }),
 });
 

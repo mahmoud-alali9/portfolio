@@ -13,19 +13,21 @@ export interface ProjectFrontmatter {
   slug: string;
   description: string;
   href: string;
-  image: string;
+  image?: string;
+  placeholderIcon?: string;
+  placeholderColor?: string;
   wrapperClassName?: string;
   imageClassName?: string;
   category: 'featured' | 'open-source' | 'personal';
   // Extended fields for project detail page
-  liveUrl: string;
-  sourceUrl: string;
+  liveUrl?: string;
+  sourceUrl?: string;
   longDescription: string;
   additionalDescription: string;
   stack: string[];
-  images: ProjectImage[];
+  images?: ProjectImage[];
   highlights: string[];
-  moreProjects: string[];
+  moreProjects?: string[];
 }
 
 export interface Project {
