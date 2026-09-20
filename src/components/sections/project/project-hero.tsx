@@ -1,3 +1,4 @@
+import { GitHubIcon } from '@/components/icons';
 import { Card } from '@/components/ui/card';
 import { ImagePlaceholder } from '@/components/ui/image-placeholder';
 import { cn } from '@/lib/utils';
@@ -46,11 +47,14 @@ const ProjectHero = ({
             {sourceUrl && (
               <a
                 href={sourceUrl}
-                className="link-underline text-lg leading-none"
+                className="text-muted-foreground hover:text-foreground inline-flex items-center gap-2 text-lg leading-none transition-colors"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Voir le code source sur GitHub"
+                title="Voir sur GitHub"
               >
-                Source code
+                <GitHubIcon className="size-5" />
+                <span className="link-underline">GitHub</span>
               </a>
             )}
           </div>
