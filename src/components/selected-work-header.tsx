@@ -25,20 +25,15 @@ const itemVariants = {
 export const SelectedWorkHeader = () => {
   return (
     <motion.div
-      className="flex items-center justify-between md:container"
+      className="md:container"
       variants={containerVariants}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true }}
     >
       <motion.h2 className="text-2xl leading-none" variants={itemVariants}>
-        Selected work
+        Projets
       </motion.h2>
-      <motion.div variants={itemVariants}>
-        <a href="/projects" className="link-underline text-lg leading-none">
-          View all
-        </a>
-      </motion.div>
     </motion.div>
   );
 };

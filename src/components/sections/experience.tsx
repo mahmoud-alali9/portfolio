@@ -1,145 +1,96 @@
 'use client';
 
 import { motion } from 'motion/react';
-import { useState } from 'react';
 
-import { cn } from '@/lib/utils';
+interface FormationEntry {
+  school: string;
+  program: string;
+  detail?: string;
+  period: string;
+}
 
-const skills = [
-  'React / Next.js',
-  'TypeScript / JavaScript (ES6+)',
-  'State management (Zustand, Redux, Context)',
-  'Responsive design & accessibility',
-  'Motion & interaction (Framer Motion, GSAP)',
-  'API integration & data fetching',
-  'Node.js / Express / Fastify',
-  'RESTful & GraphQL API design',
-  'PostgreSQL / Prisma ORM',
-  'Authentication & authorization',
-  'WebSockets & real-time systems',
+const formation: FormationEntry[] = [
+  {
+    school: 'Université de Montpellier',
+    program: 'M2 Informatique — parcours IASD',
+    detail: 'Intelligence Artificielle et Science des Données',
+    period: '2025 – en cours',
+  },
+  {
+    school: 'IAE Montpellier',
+    program: 'M2 Management des Technologies et des Sciences',
+    period: '2025 – en cours',
+  },
+  {
+    school: 'Université de Montpellier',
+    program: 'Licence Informatique',
+    period: '2022 – 2025',
+  },
 ];
 
-const experiences = [
-  {
-    company: 'Cactus Plant',
-    href: 'https://cactusplant.com',
-    role: 'Full-stack developer',
-    period: '2024 - Present',
-    skills: [0, 1, 2, 4, 6, 7, 8, 9, 10], // Full-stack: most skills
-  },
-  {
-    company: 'Happy Stats',
-    href: 'https://happystats.io',
-    role: 'Full-stack developer',
-    period: '2023 - 2024',
-    skills: [0, 1, 5, 6, 7, 8, 9], // Full-stack: API, DB, Auth
-  },
-  {
-    company: 'JustOS',
-    href: 'https://justos.dev',
-    role: 'Frontend developer',
-    period: '2021 - 2023',
-    skills: [0, 1, 2, 3, 4, 5], // Frontend focused
-  },
-  {
-    company: 'Freelance',
-    href: 'https://upwork.com',
-    role: 'Frontend developer',
-    period: '2019 - 2021',
-    skills: [0, 1, 3, 4, 5], // Frontend basics
-  },
+const languages = [
+  { name: 'Arabe', level: 'Langue maternelle' },
+  { name: 'Français', level: 'C1 — courant' },
+  { name: 'Anglais', level: 'B2 — professionnel' },
 ];
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20, filter: 'blur(10px)' },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: 'blur(0px)',
+    transition: { duration: 0.5, ease: [0.23, 1, 0.32, 1] as const },
+  },
+};
 
 const Experience = () => {
-  const [hoveredSkills, setHoveredSkills] = useState<number[] | null>(null);
-
   return (
-    <section className="section-padding container space-y-10">
-      <h2 className="text-2xl leading-none">Experience</h2>
+    <section id="formation" className="section-padding container space-y-10">
+      <h2 className="text-2xl leading-none">Formation</h2>
 
-      <div className="grid gap-10 md:grid-cols-2">
-        <ul className="space-y-10">
-          {experiences.map((exp) => (
-            <li key={exp.company} className="text-lg leading-none">
-              <motion.div
-                className="pointer-events-none"
-                initial="idle"
-                whileHover="hover"
-                onHoverStart={() => setHoveredSkills(exp.skills)}
-                onHoverEnd={() => setHoveredSkills(null)}
-              >
-                <motion.div
-                  className="pointer-events-auto inline-block"
-                  variants={{
-                    idle: { x: 0 },
-                    hover: { x: 8 },
-                  }}
-                  transition={{ type: 'spring', stiffness: 300, damping: 25 }}
-                >
-                  <a
-                    href={exp.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="link-underline inline-block"
-                  >
-                    {exp.company}
-                  </a>
-                </motion.div>
-                <motion.p
-                  className="text-muted-foreground mt-4"
-                  variants={{
-                    idle: { x: 0, opacity: 0.7 },
-                    hover: { x: 8, opacity: 1 },
-                  }}
-                  transition={{
-                    type: 'spring',
-                    stiffness: 300,
-                    damping: 25,
-                    delay: 0.02,
-                  }}
-                >
-                  {exp.role}
-                </motion.p>
-                <motion.p
-                  className="text-muted-foreground mt-4"
-                  variants={{
-                    idle: { x: 0, opacity: 0.7 },
-                    hover: { x: 8, opacity: 1 },
-                  }}
-                  transition={{
-                    type: 'spring',
-                    stiffness: 300,
-                    damping: 25,
-                    delay: 0.04,
-                  }}
-                >
-                  {exp.period}
-                </motion.p>
-              </motion.div>
+      <ul className="border-border divide-border divide-y border-t">
+        {formation.map((entry, index) => (
+          <motion.li
+            key={`${entry.school}-${entry.program}`}
+            className="flex flex-col gap-2 py-6 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            transition={{ delay: index * 0.08 }}
+            variants={itemVariants}
+          >
+            <div className="space-y-1.5">
+              <p className="text-lg leading-tight font-semibold">
+                {entry.school}
+              </p>
+              <p className="text-muted-foreground leading-snug">
+                {entry.program}
+              </p>
+              {entry.detail && (
+                <p className="text-muted-foreground/70 text-sm leading-snug">
+                  {entry.detail}
+                </p>
+              )}
+            </div>
+            <p className="text-muted-foreground shrink-0 text-sm sm:text-right">
+              {entry.period}
+            </p>
+          </motion.li>
+        ))}
+      </ul>
+
+      <div className="space-y-4 pt-4">
+        <p className="text-lg leading-none">Langues</p>
+        <ul className="text-muted-foreground space-y-2">
+          {languages.map((lang) => (
+            <li key={lang.name} className="flex items-baseline gap-2">
+              <span className="text-foreground">{lang.name}</span>
+              <span aria-hidden="true">—</span>
+              <span>{lang.level}</span>
             </li>
           ))}
         </ul>
-
-        <div className="space-y-4 text-lg leading-none">
-          <p>Skills</p>
-          <ul className="space-y-4">
-            {skills.map((skill, index) => (
-              <li
-                key={skill}
-                className={cn(
-                  'transition-all duration-300',
-                  hoveredSkills === null
-                    ? 'text-muted-foreground'
-                    : hoveredSkills.includes(index)
-                      ? 'text-foreground'
-                      : 'text-muted-foreground/40',
-                )}
-              >
-                {skill}
-              </li>
-            ))}
-          </ul>
-        </div>
       </div>
     </section>
   );

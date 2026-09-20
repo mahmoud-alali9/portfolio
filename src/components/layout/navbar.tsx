@@ -1,143 +1,37 @@
 'use client';
 
-import {
-  GalleryVerticalEnd,
-  Home,
-  type LucideIcon,
-  PencilLine,
-  UserRound,
-} from 'lucide-react';
-import { motion } from 'motion/react';
+import { CONTACT_EMAIL } from '@/lib/constants';
 
-import { GitHubIcon, XIcon } from '@/components/icons';
-import { ThemeToggle } from '@/components/theme-toggle';
-import { Button } from '@/components/ui/button';
-
-const MotionA = motion.create('a');
-
-const iconVariants = {
-  idle: { rotate: 0, scale: 1 },
-  tap: { rotate: 12, scale: 1.1 },
-};
-
-const navItems: Array<{
-  href: string;
-  icon: LucideIcon;
-  tooltip: string;
-  ariaLabel: string;
-}> = [
-  {
-    href: '/',
-    icon: Home,
-    tooltip: 'Home',
-    ariaLabel: 'Home',
-  },
-  {
-    href: '/projects',
-    icon: GalleryVerticalEnd,
-    tooltip: 'Projects',
-    ariaLabel: 'Projects',
-  },
-  {
-    href: '/about',
-    icon: UserRound,
-    tooltip: 'Profile',
-    ariaLabel: 'Profile',
-  },
-  {
-    href: '/articles',
-    icon: PencilLine,
-    tooltip: 'Articles',
-    ariaLabel: 'Articles',
-  },
+const NAV_LINKS: Array<{ href: string; label: string }> = [
+  { href: '#projects', label: 'Projets' },
+  { href: '#skills', label: 'Compétences' },
+  { href: '#formation', label: 'Formation' },
+  { href: '#contact', label: 'Contact' },
 ];
 
 const Navbar = () => {
   return (
-    <header className="supports-backdrop-filter:bg-background/60 top-0 z-50 w-full backdrop-blur">
-      <nav className="container mt-5 flex items-center justify-between gap-4 md:mt-8">
-        {/* Left side - Icon buttons */}
-        <div className="flex items-center gap-3">
-          {navItems.map((item) => {
-            const Icon = item.icon;
-            return (
-              <Button
-                key={item.href}
-                variant="muted"
-                size="icon-lg"
-                className="rounded-full"
-                tooltip={item.tooltip}
-                asChild
+    <header className="supports-backdrop-filter:bg-background/60 sticky top-0 z-50 w-full backdrop-blur">
+      <nav className="container flex h-16 items-center justify-between gap-6 md:h-20">
+        <ul className="flex items-center gap-5 md:gap-8">
+          {NAV_LINKS.map((item) => (
+            <li key={item.href}>
+              <a
+                href={item.href}
+                className="text-muted-foreground hover:text-foreground text-sm underline-offset-4 transition-colors hover:underline"
               >
-                <MotionA
-                  href={item.href}
-                  aria-label={item.ariaLabel}
-                  initial="idle"
-                  whileTap="tap"
-                >
-                  <motion.div
-                    variants={iconVariants}
-                    transition={{ type: 'spring', stiffness: 400, damping: 17 }}
-                  >
-                    <Icon className="size-5" />
-                  </motion.div>
-                </MotionA>
-              </Button>
-            );
-          })}
-        </div>
+                {item.label}
+              </a>
+            </li>
+          ))}
+        </ul>
 
-        {/* Right side - Social links */}
-        <div className="flex items-center gap-3">
-          <ThemeToggle />
-          <Button
-            variant="muted"
-            size="icon-lg"
-            className="xs:flex hidden rounded-full"
-            tooltip="Follow us on X"
-            asChild
-          >
-            <MotionA
-              href="https://x.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="X (Twitter)"
-              initial="idle"
-              whileTap="tap"
-            >
-              <motion.div
-                variants={iconVariants}
-                transition={{ type: 'spring', stiffness: 400, damping: 17 }}
-              >
-                <XIcon className="size-[18px]" />
-              </motion.div>
-            </MotionA>
-          </Button>
-          <Button
-            variant="muted"
-            size="lg"
-            className="rounded-full ps-2! pe-4!"
-            tooltip="Star us on GitHub"
-            asChild
-          >
-            <MotionA
-              href="https://github.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="GitHub Stars"
-              initial="idle"
-              whileTap="tap"
-            >
-              <motion.div
-                variants={iconVariants}
-                transition={{ type: 'spring', stiffness: 400, damping: 17 }}
-              >
-                <GitHubIcon className="size-6" />
-              </motion.div>
-              <span className="text-sm leading-none">11.2k</span>
-            </MotionA>
-          </Button>
-        </div>
+        <a
+          href={`mailto:${CONTACT_EMAIL}`}
+          className="text-foreground decoration-foreground/30 hover:decoration-foreground shrink-0 text-sm underline underline-offset-4 transition-colors"
+        >
+          Me contacter
+        </a>
       </nav>
     </header>
   );

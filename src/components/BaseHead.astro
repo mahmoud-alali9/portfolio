@@ -1,7 +1,6 @@
 ---
 import '@/styles/global.css';
 import { ClientRouter } from 'astro:transitions';
-import { Font } from 'astro:assets';
 import { SITE_METADATA } from '../consts';
 
 interface Props {
@@ -20,11 +19,20 @@ const imageURL = new URL(finalImage, Astro.site);
 ---
 
 <ClientRouter />
-<Font cssVariable="--font-funnel-sans" preload />
+
+<!-- Fonts: Geist (display) + Inter (body) via Google Fonts, per DESIGN.md -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+/>
 
 <!-- Global Metadata -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="color-scheme" content="dark" />
+<meta name="theme-color" content="#000000" />
 <meta
   name="robots"
   content={`${SITE_METADATA.robots.index ? 'index' : 'noindex'}, ${SITE_METADATA.robots.follow ? 'follow' : 'nofollow'}`}
@@ -33,13 +41,6 @@ const imageURL = new URL(finalImage, Astro.site);
 <meta name="author" content={SITE_METADATA.authors[0].name} />
 <meta name="creator" content={SITE_METADATA.creator} />
 <meta name="publisher" content={SITE_METADATA.publisher} />
-
-<!-- Theme Script - runs before render to prevent flash -->
-<script is:inline>
-  const savedTheme = localStorage.getItem('theme');
-  const initialTheme = savedTheme || 'light';
-  document.documentElement.classList.toggle('dark', initialTheme === 'dark');
-</script>
 
 <!-- Favicon -->
 {
