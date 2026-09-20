@@ -10,13 +10,10 @@ interface SelectedWorkProps {
 
 const SelectedWork = ({ projects }: SelectedWorkProps) => {
   return (
-    <section
-      id="projects"
-      className="section-padding bigger-container space-y-10 pt-0!"
-    >
+    <section className="section-padding bigger-container space-y-10 pt-0!">
       <SelectedWorkHeader />
 
-      <ul>
+      <ul className="grid gap-x-5 gap-y-10 md:grid-cols-2">
         {projects.map((project) => (
           <ProjectCard key={project.slug} project={project} />
         ))}

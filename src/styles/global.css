@@ -2,17 +2,14 @@
 @import 'tw-animate-css';
 @plugin '@tailwindcss/typography';
 
-/* Site is permanently dark — force the `dark:` variant to always match
-   instead of gating it on a `.dark` class that no longer exists. */
-@custom-variant dark (&);
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
   /* StyleGlide */
-  --display-weight: 600;
-  --text-weight: 400;
-  --font-display:
-    'Geist', 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
-  --font-text: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --display-weight: 500;
+  --text-weight: 500;
+  --font-display: var(--font-funnel-sans);
+  --font-text: var(--font-funnel-sans);
 
   --breakpoint-xs: 40rem;
   --breakpoint-3xl: 112.5rem;
@@ -53,8 +50,6 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
-  --color-helper: var(--helper);
-  --color-hairline: var(--hairline);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -79,49 +74,79 @@
   }
 }
 
-/* Permanent dark theme (DESIGN.md) — the only theme this site has.
-   Values are mapped onto the existing shadcn variable names so the rest
-   of the component library keeps working without changes. */
 :root {
   --radius: 0.375rem;
-  --background: #000000;
-  --foreground: #ffffff;
-  --card: #0a0a0a;
-  --card-foreground: #ffffff;
-  --popover: #0a0a0a;
-  --popover-foreground: #ffffff;
-  --primary: #ffffff;
-  --primary-foreground: #000000;
-  --secondary: #0a0a0a;
-  --secondary-foreground: #ffffff;
-  --muted: #0a0a0a;
-  --muted-foreground: rgba(255, 255, 255, 0.45);
-  --accent: #0a0a0a;
-  --accent-foreground: #ffffff;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.141 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.141 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.141 0 0);
+  --primary: oklch(0.141 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.968 0 0);
+  --secondary-foreground: oklch(0.141 0 0);
+  --muted: oklch(0.968 0 0);
+  --muted-foreground: oklch(0.552 0.016 286);
+  --accent: oklch(0.968 0 0);
+  --accent-foreground: oklch(0.21 0 0);
   --destructive: oklch(0.577 0.245 27.33);
-  --destructive-foreground: #ffffff;
-  --success: #22c55e;
-  --success-hover: #16a34a;
-  --border: rgba(255, 255, 255, 0.08);
-  --input: rgba(255, 255, 255, 0.08);
-  --ring: rgba(255, 255, 255, 0.5);
+  --destructive-foreground: oklch(0.985 0 0);
+  --success: oklch(0.586 0.166 142.5);
+  --success-hover: oklch(0.507 0.145 142.5);
+  --border: oklch(0.918 0 0);
+  --input: oklch(0.918 0 0);
+  --ring: oklch(0.21 0 0);
   --chart-1: oklch(0.646 0.177 36);
   --chart-2: oklch(0.6 0.1 179);
   --chart-3: oklch(0.35 0.04 220);
   --chart-4: oklch(0.828 0.12 85);
   --chart-5: oklch(0.77 0.14 55);
-  --sidebar: #0a0a0a;
-  --sidebar-foreground: #ffffff;
-  --sidebar-primary: #ffffff;
-  --sidebar-primary-foreground: #000000;
-  --sidebar-accent: #0a0a0a;
-  --sidebar-accent-foreground: #ffffff;
-  --sidebar-border: rgba(255, 255, 255, 0.08);
-  --sidebar-ring: rgba(255, 255, 255, 0.5);
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.141 0 0);
+  --sidebar-primary: oklch(0.141 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.968 0 0);
+  --sidebar-accent-foreground: oklch(0.141 0 0);
+  --sidebar-border: oklch(0.918 0 0);
+  --sidebar-ring: oklch(0.705 0.015 286);
+}
 
-  /* Extra portfolio tokens (DESIGN.md) with no existing shadcn equivalent */
-  --helper: rgba(255, 255, 255, 0.25);
-  --hairline: rgba(255, 255, 255, 0.06);
+.dark {
+  --background: oklch(0.141 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.141 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.141 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.985 0 0);
+  --primary-foreground: oklch(0.21 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.705 0.015 286);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.577 0.245 27.33);
+  --destructive-foreground: oklch(0.985 0 0);
+  --success: oklch(0.723 0.191 142.5);
+  --success-hover: oklch(0.586 0.166 142.5);
+  --border: oklch(0.269 0 0);
+  --input: oklch(0.269 0 0);
+  --ring: oklch(0.87 0 0);
+  --chart-1: oklch(0.623 0.214 259);
+  --chart-2: oklch(0.723 0.191 142.5);
+  --chart-3: oklch(0.77 0.14 55);
+  --chart-4: oklch(0.627 0.265 303);
+  --chart-5: oklch(0.64 0.245 25);
+  --sidebar: oklch(0.141 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.623 0.214 259);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(0.269 0 0);
+  --sidebar-ring: oklch(0.552 0.016 286);
 }
 
 @layer base {
@@ -167,12 +192,15 @@
 
 @utility container {
   margin-inline: auto;
-  padding-inline: 1.5rem;
+  padding-inline: 1rem;
   @media (width >= --theme(--breakpoint-sm)) {
     max-width: none;
   }
-  @media (width >= 680px) {
-    max-width: 680px;
+  @media (width >= 880px) {
+    max-width: 880px;
+  }
+  @media (width >= --theme(--breakpoint-md)) {
+    padding-inline: 1.25rem;
   }
 }
 
@@ -202,13 +230,63 @@
   }
 }
 
-/* Shiki syntax highlighting - site is permanently dark, always use the
-   dark Shiki theme (no more .dark class to gate this on). */
+/* Theme transition animation - premium blur fade */
+@keyframes theme-blur-out {
+  from {
+    opacity: 1;
+    filter: blur(0px);
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    filter: blur(12px);
+    transform: scale(1.02);
+  }
+}
+
+@keyframes theme-blur-in {
+  from {
+    opacity: 0;
+    filter: blur(12px);
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0px);
+    transform: scale(1);
+  }
+}
+
+html.theme-transition::view-transition-old(root),
+html.theme-transition::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+html.theme-transition::view-transition-old(root) {
+  z-index: 1;
+  animation: theme-blur-out 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+html.theme-transition::view-transition-new(root) {
+  z-index: 2;
+  animation: theme-blur-in 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Shiki syntax highlighting - dual theme support */
 pre[data-language] span {
+  color: var(--shiki-light);
+}
+
+.dark pre[data-language] span {
   color: var(--shiki-dark);
 }
 
 pre[data-language] {
+  background-color: var(--shiki-light-bg);
+}
+
+.dark pre[data-language] {
   background-color: var(--shiki-dark-bg);
 }
 

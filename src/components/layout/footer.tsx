@@ -1,82 +1,132 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { motion, useInView } from 'motion/react';
+import { useRef } from 'react';
 
 import {
-  AVAILABILITY_BADGES,
-  CONTACT_EMAIL,
-  COPYRIGHT,
-  LOCATION,
-  SIGNATURE_NAME,
-} from '@/lib/constants';
+  type Activity,
+  ContributionGraph,
+  ContributionGraphBlock,
+  ContributionGraphCalendar,
+} from '@/components/kibo-ui/contribution-graph';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
+import { cn } from '@/lib/utils';
 
-const TIME_ZONE = 'Europe/Paris';
-
-const formatLocalTime = (timeZone: string) =>
-  new Intl.DateTimeFormat('fr-FR', {
-    timeZone,
-    hour: '2-digit',
-    minute: '2-digit',
-  }).format(new Date());
-
-/** Live-updating local clock for the given IANA timezone. */
-const useLocalTime = (timeZone: string) => {
-  const [time, setTime] = useState(() => formatLocalTime(timeZone));
-
-  useEffect(() => {
-    const id = window.setInterval(() => {
-      setTime(formatLocalTime(timeZone));
-    }, 1000);
-    return () => window.clearInterval(id);
-  }, [timeZone]);
-
-  return time;
+// Seeded random number generator for consistent SSR/client rendering
+const seededRandom = (seed: number) => {
+  const x = Math.sin(seed) * 10000;
+  return x - Math.floor(x);
 };
 
+// Generate deterministic activity data for the past year
+const generateActivityData = (): Activity[] => {
+  const data: Activity[] = [];
+  const startDate = new Date('2024-01-01');
+  const endDate = new Date('2024-12-31');
+
+  let seed = 42;
+  for (let d = new Date(startDate); d <= endDate; d.setDate(d.getDate() + 1)) {
+    seed++;
+    const random = seededRandom(seed);
+    let level = 0;
+    let count = 0;
+
+    if (random > 0.3) {
+      level = Math.floor(seededRandom(seed + 1000) * 4) + 1;
+      count = level * Math.floor(seededRandom(seed + 2000) * 5) + 1;
+    }
+
+    data.push({
+      date: d.toISOString().split('T')[0],
+      count,
+      level,
+    });
+  }
+
+  return data;
+};
+
+// Pre-generate data at module level for consistency
+const activityData = generateActivityData();
+
 const Footer = () => {
-  const localTime = useLocalTime(TIME_ZONE);
+  const graphRef = useRef(null);
+  const isInView = useInView(graphRef, { once: true, margin: '-100px' });
 
   return (
-    <footer className="section-padding container space-y-12 border-t border-hairline pb-16!">
-      <div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
-        <div className="space-y-2">
-          <p className="text-helper text-[11px] font-semibold tracking-[1.4px] uppercase">
-            Contact
-          </p>
-          <a href={`mailto:${CONTACT_EMAIL}`} className="link-underline text-lg">
-            {CONTACT_EMAIL}
-          </a>
+    <footer className="section-padding container space-y-37.5 pb-16!">
+      <TooltipProvider delayDuration={0}>
+        <div ref={graphRef}>
+          <ContributionGraph
+            data={activityData}
+            blockSize={12}
+            blockMargin={4.5}
+            blockRadius={2.4}
+            fontSize={12}
+            maxLevel={4}
+            className="hidden w-full md:block"
+          >
+            <ContributionGraphCalendar hideMonthLabels>
+              {({ activity, dayIndex, weekIndex }) => (
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    {activity.level > 0 ? (
+                      <motion.g
+                        initial={{ opacity: 0, scale: 0 }}
+                        animate={
+                          isInView
+                            ? { opacity: 1, scale: 1 }
+                            : { opacity: 0, scale: 0 }
+                        }
+                        transition={{
+                          type: 'spring',
+                          stiffness: 300,
+                          damping: 20,
+                          delay: weekIndex * 0.02 + dayIndex * 0.005,
+                        }}
+                      >
+                        <ContributionGraphBlock
+                          activity={activity}
+                          dayIndex={dayIndex}
+                          weekIndex={weekIndex}
+                          className={cn(
+                            'data-[level="1"]:fill-green-200',
+                            'data-[level="2"]:fill-green-400',
+                            'data-[level="3"]:fill-green-500',
+                            'data-[level="4"]:fill-green-900',
+                          )}
+                        />
+                      </motion.g>
+                    ) : (
+                      <ContributionGraphBlock
+                        activity={activity}
+                        dayIndex={dayIndex}
+                        weekIndex={weekIndex}
+                        className="fill-muted"
+                      />
+                    )}
+                  </TooltipTrigger>
+                  <TooltipContent side="top" className="text-xs">
+                    {activity.count > 0
+                      ? `${activity.count} contributions on ${activity.date}`
+                      : `No contributions on ${activity.date}`}
+                  </TooltipContent>
+                </Tooltip>
+              )}
+            </ContributionGraphCalendar>
+          </ContributionGraph>
         </div>
+      </TooltipProvider>
 
-        <div className="space-y-2">
-          <p className="text-helper text-[11px] font-semibold tracking-[1.4px] uppercase">
-            Localisation
-          </p>
-          <p className="text-muted-foreground text-sm">
-            {LOCATION} · <span suppressHydrationWarning>{localTime}</span>
-          </p>
-        </div>
-
-        <div className="space-y-2">
-          <p className="text-helper text-[11px] font-semibold tracking-[1.4px] uppercase">
-            Disponibilité
-          </p>
-          {AVAILABILITY_BADGES.map((badge) => (
-            <p key={badge} className="text-muted-foreground text-sm">
-              <span className="text-success mr-1.5" aria-hidden="true">
-                ●
-              </span>
-              {badge}
-            </p>
-          ))}
-        </div>
-      </div>
-
-      <div className="border-hairline flex flex-col items-start gap-4 border-t pt-8 md:flex-row md:items-end md:justify-between">
-        <p className="font-display text-3xl italic opacity-90">
-          {SIGNATURE_NAME}
-        </p>
-        <p className="text-helper text-xs">{COPYRIGHT}</p>
+      <div className="flex justify-center">
+        <a href="mailto:hi@john.me" className="link-underline text-lg">
+          hi@john.me
+        </a>
       </div>
     </footer>
   );
