@@ -1,5 +1,6 @@
 'use client';
 
+import { Check } from 'lucide-react';
 import { motion, useScroll, useTransform } from 'motion/react';
 import { useRef } from 'react';
 
@@ -61,9 +62,9 @@ const Hero = () => {
         <div className="text-muted-foreground max-w-2xl space-y-4 text-lg leading-normal">
           <p>
             Étudiant en double M2 Intelligence Artificielle &amp; Management à
-            Montpellier. Je construis des systèmes RAG, des agents LLM et des
-            Knowledge Graphs — du prototype jusqu&apos;à l&apos;évaluation
-            avec des métriques concrètes.
+            Montpellier. Je passe le plus clair de mon temps à faire tourner
+            des pipelines RAG et des agents LLM sur des cas concrets, puis à
+            mesurer si ça marche vraiment plutôt que de le supposer.
           </p>
           <p>
             Disponible en alternance 12 mois (maintenant) ou stage fin
@@ -77,7 +78,7 @@ const Hero = () => {
               key={status}
               className="bg-muted text-foreground flex items-center gap-2 rounded-full px-4 py-2 text-sm leading-none"
             >
-              <span aria-hidden="true">✅</span>
+              <Check className="size-4" aria-hidden="true" />
               {status}
             </li>
           ))}

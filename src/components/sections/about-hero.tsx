@@ -17,12 +17,12 @@ const AboutHero = () => {
           </p>
 
           <p>
-            Je construis des systèmes RAG, des agents LLM et des Knowledge
-            Graphs — du prototype jusqu&apos;à l&apos;évaluation avec des
-            métriques concrètes (RAGAS, faithfulness, context recall).
-            J&apos;aime autant l&apos;ingénierie que la rigueur de la mesure :
-            un système qui marche « à l&apos;oeil » ne m&apos;intéresse pas,
-            je veux savoir ce qu&apos;il vaut vraiment.
+            Concrètement, ça veut dire construire des systèmes RAG, des
+            agents LLM et des Knowledge Graphs, puis les évaluer avec des
+            métriques concrètes (RAGAS, faithfulness, context recall) plutôt
+            que de me fier à l&apos;impression que ça marche. Un système qui
+            tourne « à l&apos;oeil » ne m&apos;intéresse pas, je veux savoir
+            ce qu&apos;il vaut vraiment.
           </p>
 
           <p>

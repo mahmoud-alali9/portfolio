@@ -1,5 +1,6 @@
 'use client';
 
+import { Car, Compass, MapPin } from 'lucide-react';
 import { motion } from 'motion/react';
 
 const tiles = [
@@ -9,8 +10,8 @@ const tiles = [
       image: '/images/about/montpellier.jpg',
       rotation: 4.6,
     },
-    emoji: {
-      text: '📍',
+    icon: {
+      Icon: MapPin,
       classname: 'top-0 -translate-y-1/2 -right-4',
       hoverX: -226,
     },
@@ -21,8 +22,8 @@ const tiles = [
       image: '/images/about/permis-de-conduire.jpg',
       rotation: -4,
     },
-    emoji: {
-      text: '🚗',
+    icon: {
+      Icon: Car,
       classname: 'bottom-0 translate-y-1/2 -right-4',
       hoverX: -206,
     },
@@ -33,8 +34,8 @@ const tiles = [
       image: '/images/about/mobile-france.jpg',
       rotation: 3.6,
     },
-    emoji: {
-      text: '🧭',
+    icon: {
+      Icon: Compass,
       classname: 'top-0 -translate-y-1/2 left-8',
       hoverX: 126,
     },
@@ -48,10 +49,12 @@ const About = () => {
         <h2 className="text-2xl leading-none">À propos</h2>
         <div className="text-muted-foreground space-y-8 text-lg md:space-y-11">
           <p>
-            Je travaille sur des pipelines RAG, des agents LLM et des
-            Knowledge Graphs — de la modélisation des données jusqu&apos;à
-            l&apos;évaluation avec des métriques concrètes (RAGAS,
-            faithfulness, context recall).
+            Mes projets ci-dessus donnent une bonne idée du terrain que je
+            couvre : graphes de connaissances, agents multi-LLM,
+            classification NLP. Le fil conducteur, c&apos;est de ne jamais
+            livrer un système sans savoir précisément ce qu&apos;il vaut —
+            d&apos;où les évaluations RAGAS, faithfulness et context recall à
+            chaque fois.
           </p>
           <p>
             Mon socle technique : Python, LlamaIndex, LangChain, FAISS,
@@ -94,14 +97,14 @@ const About = () => {
               </div>
             </motion.div>
             <motion.div
-              className={`bg-background absolute flex size-14 items-center justify-center rounded-full border shadow-xs ${item.emoji.classname}`}
+              className={`bg-background absolute flex size-14 items-center justify-center rounded-full border shadow-xs ${item.icon.classname}`}
               variants={{
                 idle: { x: 0 },
-                hover: { x: item.emoji.hoverX },
+                hover: { x: item.icon.hoverX },
               }}
               transition={{ type: 'spring', stiffness: 80, damping: 20 }}
             >
-              <span className="text-3xl">{item.emoji.text}</span>
+              <item.icon.Icon className="text-foreground size-6" />
             </motion.div>
           </motion.li>
         ))}
