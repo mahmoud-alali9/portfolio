@@ -24,4 +24,3 @@ export const LINKEDIN_URL = 'https://linkedin.com/in/al-mahmoud-al-ali';
 export const CONTACT_EMAIL = 'alikhlaifmahmoud@gmail.com';
 export const PHONE = '06 67 65 95 15';
 export const LOCATION = 'Montpellier, France';
-export const CV_URL = '/CV-Mahmoud-AL-ALI.pdf';

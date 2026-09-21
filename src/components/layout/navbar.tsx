@@ -1,7 +1,6 @@
 'use client';
 
 import {
-  FileText,
   GalleryVerticalEnd,
   Home,
   Linkedin,
@@ -13,7 +12,7 @@ import { motion } from 'motion/react';
 import { GitHubIcon } from '@/components/icons';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { Button } from '@/components/ui/button';
-import { CV_URL, GITHUB_URL, LINKEDIN_URL } from '@/lib/constants';
+import { GITHUB_URL, LINKEDIN_URL } from '@/lib/constants';
 
 const MotionA = motion.create('a');
 
@@ -130,29 +129,6 @@ const Navbar = () => {
               >
                 <GitHubIcon className="size-[18px]" />
               </motion.div>
-            </MotionA>
-          </Button>
-          <Button
-            variant="muted"
-            size="lg"
-            className="rounded-full ps-3! pe-4!"
-            tooltip="Télécharger mon CV"
-            asChild
-          >
-            <MotionA
-              href={CV_URL}
-              download
-              aria-label="Télécharger mon CV"
-              initial="idle"
-              whileTap="tap"
-            >
-              <motion.div
-                variants={iconVariants}
-                transition={{ type: 'spring', stiffness: 400, damping: 17 }}
-              >
-                <FileText className="size-5" />
-              </motion.div>
-              <span className="text-sm leading-none">CV</span>
             </MotionA>
           </Button>
         </div>
