@@ -1,9 +1,15 @@
 'use client';
 
 import { motion } from 'motion/react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 import { Button } from '@/components/ui/button';
+
+const getInitialTheme = (): 'light' | 'dark' =>
+  typeof document !== 'undefined' &&
+  document.documentElement.classList.contains('dark')
+    ? 'dark'
+    : 'light';
 
 const sunPath =
   'M70 49.5C70 60.8218 60.8218 70 49.5 70C38.1782 70 29 60.8218 29 49.5C29 38.1782 38.1782 29 49.5 29C60 29 69.5 38 70 49.5Z';
@@ -55,18 +61,7 @@ const rayVariant = {
 };
 
 export const ThemeToggle = () => {
-  const [theme, setThemeState] = useState<'light' | 'dark'>('light');
-
-  useEffect(() => {
-    const stored = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia(
-      '(prefers-color-scheme: dark)',
-    ).matches;
-    const initial = (stored || (prefersDark ? 'dark' : 'light')) as
-      | 'light'
-      | 'dark';
-    setThemeState(initial);
-  }, []);
+  const [theme, setThemeState] = useState<'light' | 'dark'>(getInitialTheme);
 
   const isDark = theme === 'dark';
 
